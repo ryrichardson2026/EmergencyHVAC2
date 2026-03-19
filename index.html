@@ -1,93 +1,202 @@
-Yep — with **Android** in the error, the code you pasted gives the strongest clue:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency HVAC Service — Greater Snohomish County</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #0A0F1A; color: #fff; }
 
-## Most likely culprit
+  .hero {
+    padding: 40px 24px 36px;
+    text-align: center;
+    border-bottom: 4px solid #FF6B35;
+  }
+  .hero-brand {
+    font-size: 13px;
+    font-weight: 700;
+    color: #4A6A8A;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(255,107,53,0.15);
+    border: 1px solid rgba(255,107,53,0.4);
+    color: #FF6B35;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 1.0;
+    margin-bottom: 12px;
+  }
+  h1 span { color: #FF6B35; }
+  .hero-sub {
+    font-size: 16px;
+    color: #6A8AAA;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+  .phone-label {
+    font-size: 12px;
+    color: #4A6A8A;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .phone-btn {
+    display: block;
+    background: #FF6B35;
+    color: #fff;
+    font-size: 36px;
+    font-weight: 800;
+    padding: 18px 36px;
+    border-radius: 12px;
+    text-decoration: none;
+    max-width: 480px;
+    margin: 0 auto 32px;
+  }
+  .or-divider {
+    font-size: 12px;
+    color: #4A6A8A;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+  .form-label {
+    font-size: 13px;
+    color: #6A8AAA;
+    margin-bottom: 16px;
+  }
+  .submit-btn {
+    display: block;
+    background: #1B3A6B;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 18px 36px;
+    border-radius: 12px;
+    text-decoration: none;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .submit-btn:hover { background: #0D1F3C; }
+  .guarantee {
+    font-size: 11px;
+    color: #4A6A8A;
+    margin-top: 12px;
+  }
+  .area-section {
+    padding: 24px;
+    text-align: center;
+    border-top: 1px solid #1E2D3D;
+  }
+  .area-section h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #4A6A8A;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+  .area-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .area-pill {
+    background: #111824;
+    border: 1px solid #1E2D3D;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #6A8AAA;
+  }
+  .footer {
+    background: #060A10;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #1E2D3D;
+  }
+  .footer p {
+    font-size: 11px;
+    color: #2A3A4A;
+    line-height: 2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .footer a { color: #2A3A4A; text-decoration: underline; }
 
-Your “stripped down” page still is **not really stripped down**. It still depends on a **JS-loaded Tally embed inside an iframe**:
+  @media (max-width: 480px) {
+    h1 { font-size: 36px; }
+    .phone-btn { font-size: 28px; padding: 16px 24px; }
+  }
+</style>
+</head>
+<body>
 
-```html
-<iframe data-tally-src="https://tally.so/embed/pbVReq?..."></iframe>
-<script>
-  ...
-  e.src=e.dataset.tallySrc
-  ...
-  s.src="https://tally.so/widgets/embed.js"
-</script>
-```
+<div class="hero">
+  <div class="hero-brand">Mill Creek HVAC</div>
+  <div class="badge">Emergency Service Available</div>
+  <h1>Heating or Cooling<br><span>Emergency?</span></h1>
+  <p class="hero-sub">
+    Is your heater, hot water, or AC not working?<br>
+    Licensed local pros are ready to help.<br>
+    Serving Greater Snohomish County.
+  </p>
 
-Google says destination errors can happen when the page fails for **AdsBot-Google-Mobile**, the Android/mobile crawler used to check landing pages. Google also says destinations must work on common devices and be crawlable by Google AdsBot. ([Google Help][1])
+  <div class="phone-label">Call or Text Anytime</div>
+  <a href="tel:4255957972" class="phone-btn">425.595.7972</a>
 
-Tally’s own docs show that this embed pattern relies on loading `https://tally.so/widgets/embed.js`, then calling `Tally.loadEmbeds()` or swapping `data-tally-src` into a real `src`. In other words, your form depends on JavaScript and a third-party asset loading correctly. ([Tally Forms][2])
+  <div class="or-divider">— Or submit a request below —</div>
+  <div class="form-label">Tell us what is going on and we will be in touch</div>
 
-## What I think is happening
+  <a href="https://tally.so/r/pbVReq" class="submit-btn">Request Emergency Help</a>
+  <p class="guarantee">Your info is only shared with one licensed local pro</p>
+</div>
 
-The page probably loads for normal users, but **Google’s Android crawler is hitting a bad mobile render path** because of one of these:
+<div class="area-section">
+  <h3>Serving Greater Snohomish County</h3>
+  <div class="area-grid">
+    <div class="area-pill">Mill Creek</div>
+    <div class="area-pill">Bothell</div>
+    <div class="area-pill">Lynnwood</div>
+    <div class="area-pill">Mukilteo</div>
+    <div class="area-pill">Kenmore</div>
+    <div class="area-pill">Mountlake Terrace</div>
+    <div class="area-pill">Edmonds</div>
+    <div class="area-pill">Everett</div>
+    <div class="area-pill">Marysville</div>
+    <div class="area-pill">Monroe</div>
+    <div class="area-pill">Snohomish</div>
+    <div class="area-pill">Woodinville</div>
+  </div>
+</div>
 
-* the Tally embed script
-* the lazy `data-tally-src` pattern
-* a mobile-only issue with the iframe load
-* a third-party script timeout/failure on the crawl
+<div class="footer">
+  <p>
+    millcreek-hvac.com | 425.595.7972<br>
+    Licensed, insured and bonded local HVAC pros<br>
+    <a href="https://www.termsfeed.com/live/30b803b4-2d68-4cab-a2d5-0ef398f021cf" target="_blank">Privacy Policy</a>
+    | Mill Creek HVAC 2026
+  </p>
+</div>
 
-That fits the exact Android-specific error much better than your HTML/CSS itself. Google’s docs explicitly tell you to test using the AdsBot mobile user agent for this reason. ([Google Help][1])
-
-## Best fix
-
-For review purposes, make the emergency page **truly static**.
-
-### Change this first
-
-Replace the Tally embed with a normal button or link to the form.
-
-Instead of:
-
-```html
-<iframe data-tally-src="https://tally.so/embed/pbVReq?..."></iframe>
-<script>...</script>
-```
-
-Use:
-
-```html
-<a href="https://tally.so/r/pbVReq" class="submit-btn">Request Emergency Help</a>
-```
-
-Or even point that button to your working main page form temporarily.
-
-That removes the biggest Android/mobile crawler risk immediately.
-
-## Second fix
-
-Also remove these for the test version:
-
-* Google Fonts `<link ... fonts.googleapis.com ...>`
-* the pulse animation
-* emoji characters in buttons/pills
-
-Those are less likely than Tally to be the cause, but if you want a clean policy pass, go ultra-basic first.
-
-## Third fix
-
-Make sure the page has at least one **plain crawlable link**. Google’s guidance for uncrawlable landing pages says to make sure the creative code includes at least one link to a crawlable landing page and that Google bots are allowed by `robots.txt`, including on subdomains. ([Google Help][3])
-
-## The test I would run
-
-Create **Version A** of the emergency page with:
-
-* headline
-* paragraph
-* phone link
-* one plain HTML button to `https://tally.so/r/pbVReq`
-* no iframe
-* no JS
-* no external fonts
-
-Then create a **brand-new ad** to that version and submit it.
-
-## Why I’m confident
-
-Your code still contains the one thing most likely to fail specifically for Android AdsBot: a **third-party, JS-dependent embedded form**. Google’s policy language points to mobile AdsBot behavior, and Tally confirms the embed relies on JS/script loading rather than plain HTML alone. ([Google Help][1])
-
-If you want, I can rewrite this page into a **Google-Ads-safe static version** right now.
-
-[1]: https://support.google.com/adspolicy/answer/16431325?hl=en&utm_source=chatgpt.com "Override user agent with Chrome DevTools"
-[2]: https://tally.so/help/developer-resources?utm_source=chatgpt.com "Developer Resources"
-[3]: https://support.google.com/displayvideo/answer/6174022?hl=en&utm_source=chatgpt.com "Troubleshoot creatives rejected by Display & Video 360 or ..."
+</body>
+</html>
